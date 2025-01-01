@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "user-management-app"
+version = "1.0.0"
+description = "A comprehensive user management application"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+dependencies = [
+    "PyQt6>=6.6.1",
+    "pyyaml>=6.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.2",
+    "flake8>=7.0.0",
+]
+packaging = [
+    "PyInstaller>=6.3.0",
+    "py2app>=0.28.6",
+    "dmgbuild>=1.6.1",
+]
+
+[project.scripts]
+user-management-app = "src.main:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.flake8]
+max-line-length = 120
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist"
+]
