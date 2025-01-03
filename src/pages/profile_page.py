@@ -1,27 +1,39 @@
 from PyQt6.QtWidgets import (
     QWidget,
-    QLabel,
     QVBoxLayout,
-    QHBoxLayout,
     QLineEdit,
     QPushButton,
-    QMenuBar,
-    QMenu,
     QMessageBox,
-    QFormLayout,
 )
 from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QPixmap
-from submit_button import *
+from src.mixins.submit_button_mixin import SubmitButtonMixin
 
+class ProfilePage(QWidget, SubmitButtonMixin):
+    def __init__(self,auth_service):
+        super().__init__()
+        self.auth_service =auth_service
 
-class ProfilePage(BaseAuthForm):
-    def __init__(self, auth_manager):
-        super().__init__(auth_manager, is_register=False)
+        # Create main layout
+        layout = QVBoxLayout()
+        self.setLayout(layout)
 
-        # Change button text and connect to save profile
-        self.submit_button.setText("Save Profile")
-        self.submit_button.setEnabled(False)
+        # Create email input
+        self.email_input = QLineEdit()
+        self.email_input.setPlaceholderText("Email")
+        layout.addWidget(self.email_input)
+
+        # Create password input
+        self.password_input = QLineEdit()
+        self.password_input.setPlaceholderText("Password")
+        self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
+        layout.addWidget(self.password_input)
+
+        # Create save profile button
+        self.submit_button = QPushButton("Save Profile")
+        layout.addWidget(self.submit_button)
+
+        # Setup submit button using mixin
+        self._setup_submit_button()
 
         # Track original email for updates
         self.original_email = ""
@@ -47,9 +59,9 @@ class ProfilePage(BaseAuthForm):
         current_password = self.password_input.text()
 
         # Enable save button if fields are valid and changed
-        email_valid = self.auth_manager.validate_email(current_email)
+        email_valid = self.auth_service.validate_email(current_email)
         password_valid = (
-            self.auth_manager.validate_password(current_password)
+            self.auth_service.validate_password(current_password)
             if current_password
             else True
         )
@@ -58,7 +70,7 @@ class ProfilePage(BaseAuthForm):
 
         self.submit_button.setEnabled(email_valid and password_valid and is_changed)
 
-    def save_profile(self):
+    def _on_submit(self):
         """
         Save updated profile details
         """
@@ -67,13 +79,13 @@ class ProfilePage(BaseAuthForm):
 
         # If no password provided, keep the existing one
         if not new_password:
-            success, message = self.auth_manager.update_account(
+            success, message = self.auth_service.update_account(
                 self.original_email,
                 new_email,
                 "existing_password",  # Placeholder to keep existing password
             )
         else:
-            success, message = self.auth_manager.update_account(
+            success, message = self.auth_service.update_account(
                 self.original_email, new_email, new_password
             )
 

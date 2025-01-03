@@ -6,7 +6,7 @@ This documentation explains the design and implementation of a proof-of-concept 
 
 ## Key Focus Areas
 - GUI Development with PyQt6
-- Basic Authentication Flow
+- Basicauth Flow
 - Modular Application Design
 
 ## Documentation Sections
@@ -17,7 +17,7 @@ This documentation explains the design and implementation of a proof-of-concept 
 ## Learning Resources
 - GUI development with Python
 - Event-driven programming
-- Basic authentication techniques
+- Basicauth techniques
 ## Getting Started
 - [Installation Guide](getting_started/installation.md): Step-by-step instructions to install the application
 

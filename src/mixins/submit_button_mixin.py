@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QPushButton
+from PyQt6.QtWidgets import QPushButton, QWidget, QMessageBox
 
 class SubmitButtonMixin:
     """
@@ -34,8 +34,8 @@ class SubmitButtonMixin:
         password = self.password_input.text()
 
         # Validate inputs
-        email_valid = self.auth_manager.validate_email(email)
-        password_valid = self.auth_manager.validate_password(password)
+        email_valid = self.auth_service.validate_email(email)
+        password_valid = self.auth_service.validate_password(password)
 
         # Enable/disable button based on validation
         self.submit_button.setEnabled(email_valid and password_valid)
@@ -50,11 +50,22 @@ class SubmitButtonMixin:
 
 # Example usage in a specific page class
 class LoginPage(QWidget, SubmitButtonMixin):
-    def __init__(self, auth_manager):
+    def __init__(self,auth_service):
         super().__init__()
-        self.auth_manager = auth_manager
+        self.auth_service =auth_service
         
         # Setup UI components (email_input, password_input, submit_button)
+        self.email_input = QLineEdit(self)
+        self.password_input = QLineEdit(self)
+        self.submit_button = QPushButton("Login", self)
+        
+        layout = QVBoxLayout(self)
+        layout.addWidget(self.email_input)
+        layout.addWidget(self.password_input)
+        layout.addWidget(self.submit_button)
+        
+        self.setLayout(layout)
+        
         self._setup_submit_button()  # From mixin
 
     def _on_submit(self):
@@ -65,7 +76,7 @@ class LoginPage(QWidget, SubmitButtonMixin):
         password = self.password_input.text()
 
         # Attempt login
-        success, message = self.auth_manager.login(email, password)
+        success, message = self.auth_service.login(email, password)
         
         if success:
             # Handle successful login

@@ -2,10 +2,10 @@ import os
 import pytest
 import tempfile
 
-# Import the authentication service
-from src.auth.authentication_service import UserAuthenticator
+# Import theauth service
+from auth.auth_service import AuthService
 
-class TestUserAuthenticator:
+class TestauthService:
     @pytest.fixture
     def temp_storage(self):
         """
@@ -24,7 +24,7 @@ class TestUserAuthenticator:
         """
         Test email validation
         """
-        auth = UserAuthenticator(storage_path=temp_storage)
+        auth = AuthService()storage_path=temp_storage)
         
         # Valid email tests
         valid_emails = [
@@ -52,7 +52,7 @@ class TestUserAuthenticator:
         """
         Test password validation
         """
-        auth = UserAuthenticator(storage_path=temp_storage)
+        auth = AuthService()storage_path=temp_storage)
         
         # Valid password tests
         valid_passwords = [
@@ -80,7 +80,7 @@ class TestUserAuthenticator:
         """
         Test account registration process
         """
-        auth = UserAuthenticator(storage_path=temp_storage)
+        auth = AuthService()storage_path=temp_storage)
         
         # Successful registration
         email = 'newuser@example.com'
@@ -97,9 +97,9 @@ class TestUserAuthenticator:
 
     def test_login_process(self, temp_storage):
         """
-        Test login authentication
+        Test loginauth
         """
-        auth = UserAuthenticator(storage_path=temp_storage)
+        auth = AuthService()storage_path=temp_storage)
         
         # Setup test account
         email = 'testuser@example.com'

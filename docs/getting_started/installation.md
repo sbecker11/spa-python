@@ -9,8 +9,8 @@
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/user-management-app.git
-cd user-management-app
+git clone git@github.com:sbecker11/spa-python.git
+cd spa-python
 
 # Create Virtual Environment
 

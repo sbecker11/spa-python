@@ -7,7 +7,7 @@
 - Check virtual environment activation
 - Verify all dependencies installed
 
-### Authentication Errors
+###auth Errors
 - Password too weak
   - Requires 8+ characters
   - Must include uppercase, lowercase, number, special character

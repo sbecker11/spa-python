@@ -141,3 +141,5 @@ dmypy.json
 
 # Windows
 Thumbs.db
+.codegpt
+

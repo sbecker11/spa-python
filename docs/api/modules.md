@@ -2,8 +2,8 @@
 
 ## Core Modules
 
-### Authentication (`src/auth`)
-- `authentication_service.py`: User authentication logic
+###auth (`src/auth`)
+- `authentication_service.py`: Userauth logic
   - Methods:
     - `validate_email(email)`
     - `validate_password(password)`

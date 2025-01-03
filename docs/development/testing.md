@@ -18,7 +18,7 @@ bashCopy# Run specific test file
 pytest tests/test_auth.py
 
 # Run specific test
-pytest tests/test_auth.py::TestUserAuthenticator::test_email_validation
+pytest tests/test_auth.py::TestauthService::test_email_validation
 Writing Tests
 
 Use pytest

@@ -4,7 +4,7 @@
 A comprehensive user management application built with Python and PyQt6.
 
 ## Key Features
-- Secure user authentication
+- Secure userauth
 - Profile management
 - Cross-platform support
 
@@ -39,7 +39,7 @@ python src/main.py
 
 Features
 
-Secure user authentication
+Secure userauth
 Cross-platform support
 Easy profile management
 

@@ -7,8 +7,8 @@ src/
 ├── main.py               # Application entry point
 ├── main_window.py        # Primary application window
 │
-├── auth/                 # Authentication logic
-│   └── authentication_service.py
+├── auth/                 #auth logic
+│   └──auth_service.py
 │
 ├── pages/                # User interface pages
 │   ├── home_page.py
@@ -23,7 +23,7 @@ src/
 ```
 
 ## Key Components
-- Authentication Service
+-auth Service
 - Page Management
 - Configuration System
 - Logging

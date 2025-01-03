@@ -1,4 +1,4 @@
- import os
+import os
 from typing import Dict, Any
 import yaml
 import logging
@@ -8,7 +8,7 @@ class ApplicationSettings:
     Centralized configuration management for the application
     """
     _instance = None
-    _config = {}
+    _config: dict[str, Any] = {}
 
     def __new__(cls):
         """
@@ -53,12 +53,12 @@ class ApplicationSettings:
         for path in config_paths:
             if os.path.exists(path):
                 try:
-                    with open(path, 'r') as config_file:
+                    with open(path, 'r', encoding='utf-8') as config_file:
                         file_config = yaml.safe_load(config_file)
                         # Deep merge configurations
                         cls._deep_merge(cls._config, file_config)
                     break
-                except Exception as e:
+                except (yaml.YAMLError, OSError) as e:
                     logging.warning(f"Error loading config from {path}: {e}")
 
         # Configure logging based on config

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+PYTHON_DIR=$(dirname $(which python))
+SRC_DIR=$(pwd)
+export PYTHONPATH=$SRC_DIR:$PYTHON_DIR
+echo "PYTHONPATH is ${PYTHONPATH}"
+
+# Run the main.py script
+python -m src.main

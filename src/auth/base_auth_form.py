@@ -13,22 +13,22 @@ from PyQt6.QtCore import Qt
 
 class BaseAuthForm(QWidget):
     """
-    Base widget for authentication-related pages.
+    Base widget forauth-related pages.
 
     This class provides a reusable form with email and password fields,
     including validation and submission logic.
 
     Attributes:
-        auth_manager: Authentication manager for validation and account operations
+       auth_service: auth_service for validation and account operations
         is_register: Flag to determine registration or login mode
     """
 
-    def __init__(self, auth_manager, is_register=True):
+    def __init__(self,auth_service, is_register=True):
         """
-        Initialize the authentication form.
+        Initialize theauth form.
 
         Args:
-            auth_manager: Authentication manager instance
+            auth_service: auth_service instance
             is_register (bool): True for registration, False for login
         """
         super().__init__()
@@ -36,7 +36,7 @@ class BaseAuthForm(QWidget):
         # Setup logging
         self.logger = logging.getLogger(__name__)
 
-        # Store authentication mode
+        # Storeauth mode
         self.is_register = is_register
 
         # Create main layout
@@ -73,15 +73,15 @@ class BaseAuthForm(QWidget):
 
         self.setLayout(layout)
 
-        # Store auth manager
-        self.auth_manager = auth_manager
+        # Storeauth service
+        self.auth_service =auth_service
 
     def validate_email(self) -> None:
         """
         Validate email input and update UI accordingly.
         """
         email = self.email_input.text()
-        is_valid = self.auth_manager.validate_email(email)
+        is_valid = self.auth_service.validate_email(email)
 
         if not email:
             self.email_error.setText("")
@@ -100,7 +100,7 @@ class BaseAuthForm(QWidget):
         Validate password input and update UI accordingly.
         """
         password = self.password_input.text()
-        is_valid = self.auth_manager.validate_password(password)
+        is_valid = self.auth_service.validate_password(password)
 
         if not password:
             self.password_error.setText("")
@@ -123,8 +123,8 @@ class BaseAuthForm(QWidget):
         email = self.email_input.text()
         password = self.password_input.text()
 
-        email_valid = self.auth_manager.validate_email(email)
-        password_valid = self.auth_manager.validate_password(password)
+        email_valid = self.auth_service.validate_email(email)
+        password_valid = self.auth_service.validate_password(password)
 
         self.submit_button.setEnabled(email_valid and password_valid)
 
@@ -137,9 +137,9 @@ class BaseAuthForm(QWidget):
 
         try:
             if self.is_register:
-                success, message = self.auth_manager.register_account(email, password)
+                success, message = self.auth_service.register_account(email, password)
             else:
-                success, message = self.auth_manager.login(email, password)
+                success, message = self.auth_service.login(email, password)
 
             if success:
                 # Success message

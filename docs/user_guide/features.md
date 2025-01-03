@@ -1,6 +1,6 @@
 # User Management Application Features
 
-## Authentication
+##auth
 - Secure user registration
 - Login with email and password
 - Password strength requirements

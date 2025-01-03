@@ -7,10 +7,11 @@ import logging
 from datetime import datetime, timedelta
 
 
-class AuthenticationManager:
+class AuthService:
+    """ handles userauth """
     def __init__(self, storage_path="accounts.json", max_login_attempts=5):
         """
-        Initialize the authentication manager with a file-based storage
+        Initialize theauth service with a file-based storage
 
         Args:
             storage_path (str): Path to the accounts storage file

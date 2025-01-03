@@ -7,9 +7,9 @@ py2app==0.28.6  # For macOS bundling
 setuptools>=69.0.0
 
 # Platform-Specific Packaging Utilities
-dmgbuild==1.6.1  # macOS disk image creation
-pywin32==306     # Windows-specific utilities
-appimagetool==0.1.8  # Linux AppImage creation
+dmgbuild==1.6.1; sys_platform == 'darwin'  # macOS disk image creation
+pywin32==306; sys_platform == 'win32'      # Windows-specific utilities
+appimagetool==0.1.8; sys_platform == 'linux'  # Linux AppImage creation
 
 # Utility Libraries
 platformdirs==4.2.0  # Cross-platform directory handling
@@ -18,6 +18,7 @@ packaging==24.0      # Packaging version comparisons
 # Development and Testing
 pytest==8.0.2
 flake8==7.0.0
+pylint==2.15.0  # Replace with the latest version
 
 # Optional Configuration and Logging
 pyyaml==6.0.1       # Advanced configuration files
@@ -25,3 +26,6 @@ toml==0.10.2        # Alternative configuration format
 
 # Optional Error Tracking (Recommended)
 sentry-sdk==1.40.6
+
+# Code Formatting
+black==23.9.1  # Replace with the latest version
